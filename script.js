@@ -42,6 +42,30 @@ $("fc").innerHTML=DATA.wx.days.map(d=>`<div><b>${d[0]}</b><span>${d[1]}</span>${
  b.onclick=()=>{t=eff()==="dark"?"light":"dark";try{localStorage.setItem("theme",t)}catch(e){}apply()};
  apply();
 })();
+// ===== CAREERS: edit openings and the email that receives applications =====
+const CAREERS_EMAIL="careers@prairiegoldgrain.example";
+const JOBS=[
+ {t:"Grain Elevator Operator",type:"Full-time",loc:"On site",d:"Receive, sample, grade and store grain; run dump pits, legs and bins safely."},
+ {t:"Seasonal Scale Attendant",type:"Seasonal (harvest)",loc:"On site",d:"Weigh trucks, write scale tickets and help producers during harvest. Long hours in season."},
+ {t:"CDL Truck Driver",type:"Full-time",loc:"Local and regional",d:"Haul grain between farms, the elevator and terminals. Class A CDL required."},
+ {t:"Grain Merchandiser",type:"Full-time",loc:"Office",d:"Post daily bids, work with producers on contracts and manage basis and risk."}
+];
+$("jobs").innerHTML=JOBS.map((j,i)=>`<div class="job"><div><div class="meta">${j.type} · ${j.loc}</div><h3>${j.t}</h3><p>${j.d}</p></div><button class="btn" type="button" data-i="${i}">Apply</button></div>`).join("");
+$("pos").innerHTML=JOBS.map(j=>`<option>${j.t}</option>`).join("")+"<option>General application</option>";
+$("jobs").onclick=e=>{const b=e.target.closest("button[data-i]");if(!b)return;$("pos").value=JOBS[b.dataset.i].t;$("apply").scrollIntoView({behavior:"smooth"});setTimeout(()=>$("an").focus({preventScroll:true}),400)};
+$("ar").onchange=()=>{const f=$("ar").files[0];$("ar").setCustomValidity(f&&f.size>5242880?"Please choose a file under 5 MB":"");$("ar").reportValidity()};
+$("af").onsubmit=e=>{e.preventDefault();const g=id=>$(id).value.trim();const f=$("ar").files[0];
+ const subj="Application: "+g("pos")+" - "+g("an");
+ const body=`Position: ${g("pos")}\nName: ${g("an")}\nEmail: ${g("ae")}\nPhone: ${g("ap")}\nAvailable to start: ${g("as")}\n\nExperience / notes:\n${g("ax")}\n\n${f?"Resume: "+f.name+" (attached separately)":"(Please attach your resume to this email.)"}`;
+ const o=$("aout");o.hidden=false;
+ o.innerHTML=`<p><b>Almost done!</b> Open the email below, attach <span id="rn">your resume</span> and send it.</p><pre></pre><a class="btn" id="mt" target="_blank" rel="noopener">Open in email app</a> <button class="btn alt" type="button" id="cp">Copy text</button>${f&&navigator.canShare&&navigator.canShare({files:[f]})?' <button class="btn alt" type="button" id="sh">Share with resume</button>':''}`;
+ o.querySelector("pre").textContent="To: "+CAREERS_EMAIL+"\nSubject: "+subj+"\n\n"+body;
+ $("mt").href="mailto:"+CAREERS_EMAIL+"?subject="+encodeURIComponent(subj)+"&body="+encodeURIComponent(body);
+ if(f)$("rn").textContent=f.name;
+ if($("sh"))$("sh").onclick=async()=>{try{await navigator.share({files:[f],title:subj,text:o.querySelector("pre").textContent})}catch(_){}};
+ $("cp").onclick=async()=>{try{await navigator.clipboard.writeText(o.querySelector("pre").textContent);$("cp").textContent="Copied!"}catch(_){$("cp").textContent="Copy failed"}};
+ o.scrollIntoView({behavior:"smooth",block:"nearest"});};
+
 // Hero: real video if provided, else animated wheat field
 if(HERO_VIDEO_URL){const v=$("hv");v.src=HERO_VIDEO_URL;v.hidden=false;$("cv").style.display="none";}
 else{
