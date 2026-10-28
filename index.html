@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Prairie Gold Grain Co.</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="hero" id="top">
+  <video id="hv" autoplay muted loop playsinline hidden></video>
+  <canvas id="cv" aria-hidden="true"></canvas>
+  <nav><span>🌾 Prairie Gold Grain Co.</span><span><a href="#about">About Us</a><a href="#bids">Bids</a><a href="#futures">Futures</a><a href="#hours">Hours</a><a href="#weather">Weather</a><a href="#contact">Contact</a><button id="tg" type="button" aria-label="Switch light or dark mode"></button></span></nav>
+  <div class="txt">
+    <span class="pill" id="status"><span class="dot"></span><span id="stxt">…</span></span>
+    <h1>Honest grain. Fair bids. Right down the road.</h1>
+    <p>Full-service grain elevator buying corn, soybeans, wheat and milo — with storage, drying and hauling for local producers.</p>
+  </div>
+</header>
+
+<main>
+<section id="bids">
+  <h2>Cash Bids</h2><p class="sub" id="bidsub"></p>
+  <div class="card"><table><thead><tr><th>Commodity</th><th>Delivery</th><th class="r">Futures</th><th class="r">Basis</th><th class="r">Cash Bid</th></tr></thead><tbody id="bidrows"></tbody></table></div>
+</section>
+
+<section id="futures">
+  <h2>Futures</h2><p class="sub">Delayed quotes · $/bu</p>
+  <div class="card"><table><thead><tr><th>Contract</th><th class="r">Last</th><th class="r">Change</th><th class="r">High</th><th class="r">Low</th></tr></thead><tbody id="futrows"></tbody></table></div>
+</section>
+
+<div class="grid">
+<section id="hours">
+  <h2>Hours of Operation</h2><p class="sub">Harvest hours may extend — call ahead.</p>
+  <div class="card"><ul class="hrs" id="hrs"></ul></div>
+</section>
+<section id="weather">
+  <h2>Weather</h2><p class="sub">Local conditions</p>
+  <div class="card">
+    <div class="wx-now"><span class="i" id="wi"></span><div><div class="t" id="wt"></div><div id="wd" class="sans"></div></div></div>
+    <div class="fc" id="fc"></div>
+  </div>
+</section>
+</div>
+<section id="about">
+  <h2>About Us</h2><p class="sub">Family-run. Farmer-focused.</p>
+  <div class="card">
+    <p>Prairie Gold Grain Co. has been serving local farm families since 1952. What started as a single wooden elevator beside the rail line is now a modern facility with fast receiving, accurate scales and plenty of storage.</p>
+    <p>We know a good bid only matters if the line moves and the ticket is right. Our team lives in this community, and we treat every load like it’s our own.</p>
+    <div class="stats"><div><b>70+</b>Years serving farmers</div><div><b>1.2M</b>Bushels of storage</div><div><b>4</b>Commodities bought</div><div><b>24/7</b>Harvest scale access</div></div>
+    <div class="svc"><span>Grain purchasing</span><span>Storage</span><span>Drying</span><span>Trucking</span><span>Forward contracts</span><span>Scale tickets</span></div>
+  </div>
+</section>
+<section id="contact">
+  <h2>Contact Us</h2><p class="sub">Call for today’s bids, scale questions or to book storage.</p>
+  <div class="card">
+    <div class="ct">
+      <div><small>Main Office</small><a href="tel:+15551234567">(555) 123-4567</a></div>
+      <div><small>Grain Bids &amp; Marketing</small><a href="tel:+15551234568">(555) 123-4568</a></div>
+      <div><small>Email</small><a href="mailto:office@prairiegoldgrain.example">office@prairiegoldgrain.example</a></div>
+      <div><small>Location</small>1200 Elevator Road<br>Your Town, USA 00000</div>
+      <div><small>Scale House</small>Open during business hours; extended hours at harvest</div>
+      <div><small>After-Hours Harvest Line</small><a href="tel:+15551234569">(555) 123-4569</a></div>
+    </div>
+    <div class="btns"><a class="btn" href="tel:+15551234567">Call Us</a><a class="btn alt" href="mailto:office@prairiegoldgrain.example">Email Us</a><a class="btn alt" href="https://www.google.com/maps/search/?api=1&query=1200+Elevator+Road" target="_blank" rel="noopener">Get Directions</a></div>
+  </div>
+</section>
+<p class="note">Sample data shown. Replace the values in the <code>DATA</code> object at the top of the page script with your live bids, quotes and forecast.</p>
+</main>
+
+<footer>
+  <strong>Prairie Gold Grain Co.</strong><br>1200 Elevator Road · Your Town, USA · (555) 123-4567<br>Scale tickets · Storage · Drying · Trucking
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
